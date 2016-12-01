@@ -23,7 +23,7 @@ namespace 饥荒百科全书CSharp.Class.DedicatedServerClass.DedicateServer
         private UTF8Encoding utf8NoBom = new UTF8Encoding(false);
 
         private bool isFileToProperty=false;
-        int n = 1;
+        int n = 11;
         private List<string> gameStyle;
         private string gameStyleText;
         private string houseName;
