@@ -32,11 +32,11 @@ namespace 饥荒百科全书CSharp.Class.DedicatedServerClass
         public void Init() {
 
             // 标记：这里要获取，先这样写，路径
-            string clusterIni_FilePath = @"C:\Users\yy\Documents\Klei\DoNotStarveTogether\yyServer\cluster.ini";
+            string clusterIni_FilePath = @"C:\Users\yy\Documents\Klei\DoNotStarveTogether\yyServer\cluster1.ini";
             if (!File.Exists(clusterIni_FilePath))
             {
-                MessageBox.Show("cluster.ini文件不存在，请在【基本设置.xaml.cs】下35行设置正确的路径。");
-
+                MessageBox.Show("cluster.ini文件不存在，请在【基本设置.xaml.cs】下35行设置正确的路径和basic.cs 358行。");
+                return;
             }
 
             // 初始化基本设置

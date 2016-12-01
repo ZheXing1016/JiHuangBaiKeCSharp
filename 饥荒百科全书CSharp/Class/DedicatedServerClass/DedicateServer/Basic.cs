@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using 饥荒Log;
 
 namespace 饥荒百科全书CSharp.Class.DedicatedServerClass.DedicateServer
@@ -23,7 +24,6 @@ namespace 饥荒百科全书CSharp.Class.DedicatedServerClass.DedicateServer
         private UTF8Encoding utf8NoBom = new UTF8Encoding(false);
 
         private bool isFileToProperty=false;
-        int n = 11;
         private List<string> gameStyle;
         private string gameStyleText;
         private string houseName;
@@ -42,11 +42,14 @@ namespace 饥荒百科全书CSharp.Class.DedicatedServerClass.DedicateServer
         {
             get
             {
+             
                 return houseName;
+
             }
 
             set
             {
+                
                 houseName = value;
                 NotifyPropertyChange("HouseName");
             }
@@ -230,7 +233,7 @@ namespace 饥荒百科全书CSharp.Class.DedicatedServerClass.DedicateServer
             gameStyle.Add("疯狂");
             gameStyleText = "合作";
             NotifyPropertyChange("GameStyle");
-           // NotifyPropertyChange("GameStyleText");
+           
             // 游戏模式【字段赋值】
             gameMode = new List<string>();
             gameMode.Add("生存");
@@ -238,7 +241,7 @@ namespace 饥荒百科全书CSharp.Class.DedicatedServerClass.DedicateServer
             gameMode.Add("荒野");
             gameModeText = "无尽";
             NotifyPropertyChange("GameMode");
-          //  NotifyPropertyChange("GameModeText");
+         
 
             // 其他先全部赋值，防止为空
             houseName = "qq群：351765204";
@@ -327,8 +330,8 @@ namespace 饥荒百科全书CSharp.Class.DedicatedServerClass.DedicateServer
             string yx_cave = iniTool.ReadValue("SHARD", "shard_enabled");
             if (yx_cave == "true") { IsCave = true; };
             if (yx_cave == "false") { IsCave = false; };
-        
 
+            isFileToProperty = false;
 
       //  Log.Write("从cluster.ini文件读取数据给基本设置字段赋值—结束");
 
@@ -347,6 +350,61 @@ namespace 饥荒百科全书CSharp.Class.DedicatedServerClass.DedicateServer
             {
                 //根据PropertyChanged事件的委托类，实现PropertyChanged事件： 
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+
+
+                // 保存
+                if (isFileToProperty==false)
+                {
+                    INIhelper ini1 = new INIhelper(@"C:\Users\yy\Documents\Klei\DoNotStarveTogether\yyServer" + @"\cluster.ini", utf8NoBom);
+
+                    if (propertyName == "HouseName")
+                    {
+                        ini1.write("NETWORK", "cluster_name", HouseName, utf8NoBom);
+                    }
+
+                    if (propertyName == "Describe")
+                    {
+                        ini1.write("NETWORK", "cluster_description", Describe, utf8NoBom);
+                    }
+                    if (propertyName == "LimitNumOfPeople")
+                    {
+                        ini1.write("GAMEPLAY", "max_players", LimitNumOfPeople.ToString(), utf8NoBom);
+                    }
+                    if (propertyName == "Secret")
+                    {
+                        ini1.write("NETWORK", "cluster_password", Secret, utf8NoBom);
+                    }
+                    if (propertyName == "IsCave")
+                    {
+                        ini1.write("SHARD", "shard_enabled", IsCave.ToString().ToLower(), utf8NoBom);
+                    }
+                    if (propertyName == "IsConsole")
+                    {
+                        ini1.write("MISC", "console_enabled", IsConsole.ToString().ToLower(), utf8NoBom);
+                    }
+                    if (propertyName == "IsPause")
+                    {
+                        ini1.write("GAMEPLAY", "pause_when_empty", IsPause.ToString().ToLower(), utf8NoBom);
+                    }
+                    if (propertyName == "IsPVP")
+                    {
+                        ini1.write("GAMEPLAY", "pvp", IsPVP.ToString().ToLower(), utf8NoBom);
+                    }
+                    if (propertyName == "GameStyleText")
+                    {
+                        if (GameStyleText == "合作") { ini1.write("NETWORK", "cluster_intention", "cooperative", utf8NoBom); };
+                        if (GameStyleText == "交际") { ini1.write("NETWORK", "cluster_intention", "social", utf8NoBom); };
+                        if (GameStyleText == "竞争") { ini1.write("NETWORK", "cluster_intention", "competitive", utf8NoBom); };
+                        if (GameStyleText == "疯狂") { ini1.write("NETWORK", "cluster_intention", "madness", utf8NoBom); };
+                    }
+                    if (propertyName == "GameModeText")
+                    {
+                        if (GameModeText  == "无尽") { ini1.write ("GAMEPLAY", "game_mode", "endless", utf8NoBom); };
+                        if (GameModeText  == "生存") { ini1.write ("GAMEPLAY", "game_mode", "survival", utf8NoBom); };
+                        if (GameModeText  == "荒野") { ini1.write ("GAMEPLAY", "game_mode", "wilderness", utf8NoBom); };
+                    }
+                }
+          
             }
         }
 
