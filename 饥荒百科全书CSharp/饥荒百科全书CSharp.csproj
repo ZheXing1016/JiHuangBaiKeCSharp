@@ -60,6 +60,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Neo.Lua, Version=5.3.0.0, Culture=neutral, PublicKeyToken=fdb0cd4fe8a6e3b2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Class\DedicatedServerClass\dll\Neo.Lua.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -88,6 +92,20 @@
     </ApplicationDefinition>
     <Compile Include="Class\ArrayDelRepeatData.cs" />
     <Compile Include="Class\brushConverter.cs" />
+    <Compile Include="Class\DedicatedServerClass\DedicateServer\Basic.cs" />
+    <Compile Include="Class\DedicatedServerClass\DedicateServer\Leveldataoverride.cs" />
+    <Compile Include="Class\DedicatedServerClass\DedicateServer\Mod.cs" />
+    <Compile Include="Class\DedicatedServerClass\DedicateServer\Mods.cs" />
+    <Compile Include="Class\DedicatedServerClass\DedicateServer\ModXiJie.cs" />
+    <Compile Include="Class\DedicatedServerClass\Log.cs" />
+    <Compile Include="Class\DedicatedServerClass\Tools\INIhelper.cs" />
+    <Compile Include="Class\DedicatedServerClass\Tools\LuaConfig.cs" />
+    <Compile Include="Class\DedicatedServerClass\Tools\PathAll.cs" />
+    <Compile Include="Class\DedicatedServerClass\Tools\SendMessage.cs" />
+    <Compile Include="Class\DedicatedServerClass\Tools\Tool.cs" />
+    <Compile Include="Class\DedicatedServerClass\基本设置.xaml.cs">
+      <DependentUpon>基本设置.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Class\KeyboardHandler.cs" />
     <Compile Include="Class\MainWindowClass\MWFood.cs" />
     <Compile Include="Class\PanelGeneration.cs" />
@@ -117,6 +135,10 @@
     <Compile Include="SplashScreen.xaml.cs">
       <DependentUpon>SplashScreen.xaml</DependentUpon>
     </Compile>
+    <Page Include="Class\DedicatedServerClass\基本设置.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Dictionary\ComboBoxDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -4315,6 +4337,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\DedicatedServer\D_mainpanel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Class\DedicatedServerClass\dll\Neo.Lua.dll" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

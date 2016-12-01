@@ -1,4 +1,4 @@
-﻿<Window x:Name="mainWindow" x:Class="饥荒百科全书CSharp.MainWindow"
+﻿<Window xmlns:DedicatedServerClass="clr-namespace:饥荒百科全书CSharp.Class.DedicatedServerClass"  x:Name="mainWindow" x:Class="饥荒百科全书CSharp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -244,7 +244,9 @@
                     <WrapPanel x:Name="WrapPanel_Left_DedicatedServer" Focusable="False" Background="#88DE9191"/>
                 </ScrollViewer>
                 <ScrollViewer x:Name="ScrollViewer_Right_DedicatedServer" Template="{DynamicResource MyScrollViewer}" Grid.Column="1" Visibility="Collapsed" Margin="5,0,0,0" Focusable="False">
-                    <WrapPanel x:Name="WrapPanel_Right_DedicatedServer" Focusable="False" Background="#88409A9E"/>
+                    <WrapPanel x:Name="WrapPanel_Right_DedicatedServer" Focusable="False" Background="#88409A9E">
+                        <DedicatedServerClass:基本设置 />
+                    </WrapPanel>
                 </ScrollViewer>
             </Grid>
             <Grid x:Name="RightGrid_Setting" Grid.Column="1" Grid.Row="1" d:IsHidden="True">
